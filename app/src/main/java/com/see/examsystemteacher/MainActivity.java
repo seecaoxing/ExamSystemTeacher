@@ -7,10 +7,12 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.widget.Toast;
 
 import com.see.constant.Constant;
+import com.see.notify.NotifyFragment;
 import com.see.ui.BottomControlPanel;
 import com.see.ui.HeadControlPanel;
 
@@ -164,7 +166,7 @@ public class MainActivity extends Activity implements BottomControlPanel.BottomP
         // 开启一个Fragment事务
         fragmentTransaction = fragmentManager.beginTransaction();
 /*		 if(TextUtils.equals(tag, Constant.FRAGMENT_FLAG_MESSAGE)){
-		   if (messageFragment == null) {
+           if (messageFragment == null) {
 				messageFragment = new MessageFragment();
 			}
 
@@ -202,6 +204,17 @@ public class MainActivity extends Activity implements BottomControlPanel.BottomP
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         // TODO Auto-generated method stub
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // TODO Auto-generated method stub
+        Fragment f = getFragment(currFragTag);
+        if ( f instanceof NotifyFragment) {
+
+            ((NotifyFragment) f).onKeyDown(keyCode,event);
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }
