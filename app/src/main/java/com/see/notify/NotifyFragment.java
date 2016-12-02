@@ -24,6 +24,7 @@ import com.see.examsystemteacher.R;
 public class NotifyFragment extends BaseFragment {
 
     private static final String TAG = "NotifyFragment";
+
     private ListView listView_Notify;
     private View notifyLayout = null;
 
