@@ -210,9 +210,13 @@ public class MainActivity extends Activity implements BottomControlPanel.BottomP
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // TODO Auto-generated method stub
         Fragment f = getFragment(currFragTag);
-        if ( f instanceof NotifyFragment) {
-
-            ((NotifyFragment) f).onKeyDown(keyCode,event);
+        if (f instanceof NotifyFragment) {
+            boolean temp = ((NotifyFragment) f).onKeyDown(keyCode, event);
+            if (temp) {
+                return true;
+            } else {
+                return super.onKeyDown(keyCode, event);
+            }
         }
         return super.onKeyDown(keyCode, event);
     }

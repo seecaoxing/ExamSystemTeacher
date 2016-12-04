@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.see.constant.Constant;
 import com.see.examsystemteacher.BaseFragment;
@@ -32,7 +33,7 @@ public class NotifyFragment extends BaseFragment {
     private RelativeLayout plus_rl;
     private ImageView plus_im;
     private TextView dishui_tv, guoshui_tv;
-
+    private TextView test_tv;
     private Animation rotate_anticlockwise, rotate_clockwise, scale_max, scale_min, alpha_button;
 
 
@@ -64,15 +65,31 @@ public class NotifyFragment extends BaseFragment {
                 dishui_tv.startAnimation(clicked ? scale_max : scale_min);
                 guoshui_tv.startAnimation(clicked ? scale_max : scale_min);
                 // 背景色的改变
-                plus_rl.setBackgroundColor(clicked ? Color
-                        .parseColor("#ddffffff") : Color.TRANSPARENT);
+                plus_rl.setBackgroundColor(clicked ? Color.parseColor("#ddffffff") : Color.TRANSPARENT);
                 // 背景是否可点击，用于控制Framelayout层下面的视图是否可点击
                 plus_rl.setClickable(clicked);
             }
         });
 
-        dishui_tv.setOnClickListener(onClickListener);
+        dishui_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "标题一", Toast.LENGTH_SHORT).show();
+            }
+        });
         guoshui_tv.setOnClickListener(onClickListener);
+        plus_rl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                plus_im.performClick();
+            }
+        });
+        test_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "测试", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -97,6 +114,7 @@ public class NotifyFragment extends BaseFragment {
         plus_im = (ImageView) notifyLayout.findViewById(R.id.plus_im);
         dishui_tv = (TextView) notifyLayout.findViewById(R.id.dishui_tv);
         guoshui_tv = (TextView) notifyLayout.findViewById(R.id.guoshui_tv);
+        test_tv = (TextView) notifyLayout.findViewById(R.id.test_tv);
     }
 
     public void initData() {
@@ -109,13 +127,13 @@ public class NotifyFragment extends BaseFragment {
 
     }
 
-    public  boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         // TODO Auto-generated method stub
         if (dishui_tv.getVisibility() == View.VISIBLE && keyCode == KeyEvent.KEYCODE_BACK) {
             plus_im.performClick();
-
+            return true;
         }
-        return true;
+        return false;
     }
 
 }
