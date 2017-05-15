@@ -17,11 +17,12 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/personalInformation_rl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/colorAccent"
+                android:background="#f5f5f5"
                 android:padding="10dp"
 
                 >

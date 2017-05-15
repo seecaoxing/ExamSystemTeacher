@@ -12,10 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.see.classes.ClassFragment;
+import com.see.fragment.classes.ClassFragment;
 import com.see.constant.Constant;
-import com.see.notify.NotifyFragment;
-import com.see.personal.PersonalFragment;
+import com.see.fragment.notify.NotifyFragment;
+import com.see.fragment.personal.PersonalFragment;
 
 /**
  * Created by see on 2016/11/4.
@@ -46,8 +46,7 @@ public class BaseFragment extends Fragment {
         // TODO Auto-generated method stub
         Log.i(TAG, "onCreateView...");
 //		View v = inflater.inflate(R.layout.messages_layout, container, false);
-
-        return 	super.onCreateView(inflater, container, savedInstanceState);
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
@@ -99,13 +98,13 @@ public class BaseFragment extends Fragment {
         super.onDestroy();
     }
 
-    public static BaseFragment newInstance(Context context, String tag){
-        BaseFragment baseFragment =  null;
-        if(TextUtils.equals(tag, Constant.FRAGMENT_FLAG_NOTIFY)){
+    public static BaseFragment newInstance(Context context, String tag) {
+        BaseFragment baseFragment = null;
+        if (TextUtils.equals(tag, Constant.FRAGMENT_FLAG_NOTIFY)) {
             baseFragment = new NotifyFragment();
-        }else if(TextUtils.equals(tag, Constant.FRAGMENT_FLAG_CLASS)){
+        } else if (TextUtils.equals(tag, Constant.FRAGMENT_FLAG_CLASS)) {
             baseFragment = new ClassFragment();
-        }else if(TextUtils.equals(tag, Constant.FRAGMENT_FLAG_PERSONAL)){
+        } else if (TextUtils.equals(tag, Constant.FRAGMENT_FLAG_PERSONAL)) {
             baseFragment = new PersonalFragment();
         }
 

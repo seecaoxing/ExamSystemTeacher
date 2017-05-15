@@ -17,5 +17,12 @@ public class Constant {
     public static final String FRAGMENT_FLAG_PERSONAL = "个人中心";
     public static final String FRAGMENT_FLAG_SIMPLE = "simple";
 
+    public static final String FRAGMENT_FLAG_SENDMESSAGE = "发布消息";
+
+
+    public static final String FRAGMENT_FLAG_ADDCLASS = "添加班级";
+    public static final String FRAGMENT_FLAG_refrash = "刷新";
+
+
 
 }

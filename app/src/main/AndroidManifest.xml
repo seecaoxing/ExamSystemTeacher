@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.see.examsystemteacher">
 
+
+    <!-- if you want to load images from the internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- if you want to load images from a file OR from the internet -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,8 +21,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.see.loginandregister.Login"></activity>
-        <activity android:name="com.see.loginandregister.Register"></activity>
+        <activity android:name="com.see.loginandregister.LoginActivity" />
+
+        <activity android:name="com.see.loginandregister.RegisterActivity" />
+        <activity android:name="com.see.fragment.personal.PersonalInformation" />
+        <activity android:name="com.see.activity.NotityListViewItemClickActivity" />
+        <activity android:name="com.see.activity.ClassListViewItemClickActivity" />
+        <activity android:name="com.see.activity.NotifyBannerItenClickActivity" />
+        <activity android:name="com.see.activity.EditMessageActivity" />
+        <activity android:name="com.see.activity.AddClassActivity" />
 
     </application>
 

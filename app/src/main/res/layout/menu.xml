@@ -3,7 +3,7 @@
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.see.examsystemteacher.MainActivity" >
+    tools:context="com.see.examsystemteacher.MainActivity">
 
     <include
         android:id="@+id/bottom_layout"
@@ -24,12 +24,12 @@
         android:layout_height="1dip"
         android:layout_below="@id/head_layout"
         android:background="#FFE7E7E7" />
+
     <FrameLayout
         android:id="@+id/fragment_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/head_layout"
-        android:layout_above="@id/bottom_layout" >
-    </FrameLayout>
+        android:layout_above="@id/bottom_layout"
+        android:layout_below="@id/head_layout"></FrameLayout>
 
 </RelativeLayout>

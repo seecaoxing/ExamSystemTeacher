@@ -20,8 +20,8 @@ public class HeadControlPanel extends RelativeLayout {
     private Context mContext;
     private TextView mMidleTitle;
     private TextView mRightTitle;
-    private static final float middle_title_size = 20f;
-    private static final float right_title_size = 17f;
+    private static final float middle_title_size = 18f;
+    private static final float right_title_size = 13f;
     private static final int default_background_color = Color.rgb(23, 124, 202);
 
     public HeadControlPanel(Context context, AttributeSet attrs) {
@@ -43,11 +43,20 @@ public class HeadControlPanel extends RelativeLayout {
         if (mMidleTitle != null) {
             setMiddleTitle(Constant.FRAGMENT_FLAG_NOTIFY);
         }
+        if (mRightTitle != null) {
+            setRightTitle(Constant.FRAGMENT_FLAG_SENDMESSAGE);
+
+        }
     }
 
     public void setMiddleTitle(String s) {
         mMidleTitle.setText(s);
         mMidleTitle.setTextSize(middle_title_size);
+    }
+
+    public void setRightTitle(String s) {
+        mRightTitle.setText(s);
+        mRightTitle.setTextSize(right_title_size);
     }
 
 

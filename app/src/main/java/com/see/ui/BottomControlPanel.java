@@ -122,6 +122,7 @@ public class BottomControlPanel extends RelativeLayout implements View.OnClickLi
         layoutItems(left, top, right, bottom);
     }
 
+
     /**
      * 最左边和最右边的view由母布局的padding进行控制位置。这里需对第2、3个view的位置重新设置
      *
@@ -131,33 +132,38 @@ public class BottomControlPanel extends RelativeLayout implements View.OnClickLi
      * @param bottom
      */
     private void layoutItems(int left, int top, int right, int bottom) {
+
+        //TODO 为什么layoutItems会循环执行
         int n = getChildCount();
+        //Toast.makeText(context,"获得父view的child个数"+n,Toast.LENGTH_SHORT).show();
         if (n == 0) {
             return;
         }
         int paddingLeft = getPaddingLeft();
         int paddingRight = getPaddingRight();
-        Log.i("yanguoqi", "paddingLeft = " + paddingLeft + " paddingRight = " + paddingRight);
+        Log.i("caoxing", "paddingLeft = " + paddingLeft + " paddingRight = " + paddingRight);
+
         int width = right - left;
         int height = bottom - top;
-        Log.i("yanguoqi", "width = " + width + " height = " + height);
+        int averageWidth = width / n;
+        Log.i("caoxing", "width = " + width + " height = " + height);
         int allViewWidth = 0;
         for (int i = 0; i < n; i++) {
+            //   Toast.makeText(context,"底部导航栏各个item宽度"+n,Toast.LENGTH_SHORT).show();
             View v = getChildAt(i);
-            Log.i("yanguoqi", "v.getWidth() = " + v.getWidth());
+            Log.i("caoxing", "v.getWidth() = " + v.getWidth());
             allViewWidth += v.getWidth();
         }
+        //每个btn之间间隔的距离
         int blankWidth = (width - allViewWidth - paddingLeft - paddingRight) / (n - 1);
-        Log.i("yanguoqi", "blankV = " + blankWidth);
+        Log.i("caoxing", "blankV = " + blankWidth);
 
-        LayoutParams params1 = (LayoutParams) viewList.get(1).getLayoutParams();
-        params1.leftMargin = blankWidth;
-        viewList.get(1).setLayoutParams(params1);
-
-        LayoutParams params2 = (LayoutParams) viewList.get(2).getLayoutParams();
-        params2.leftMargin = blankWidth;
-        viewList.get(2).setLayoutParams(params2);
+        for (int i = 0; i <= n - 1; i++) {
+            LayoutParams parsms = (LayoutParams) viewList.get(i).getLayoutParams();
+            parsms.width = averageWidth;
+//          parsms.leftMargin = blankWidth;//使各个按钮间没有间隔，用户点击时更加灵敏
+            viewList.get(i).setLayoutParams(parsms);
+        }
     }
-
 
 }

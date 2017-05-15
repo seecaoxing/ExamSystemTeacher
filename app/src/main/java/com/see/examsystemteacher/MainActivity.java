@@ -9,10 +9,14 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.see.activity.AddClassActivity;
+import com.see.activity.EditMessageActivity;
 import com.see.constant.Constant;
-import com.see.notify.NotifyFragment;
+import com.see.fragment.notify.NotifyFragment;
 import com.see.ui.BottomControlPanel;
 import com.see.ui.HeadControlPanel;
 
@@ -22,14 +26,10 @@ public class MainActivity extends Activity implements BottomControlPanel.BottomP
     private static final String TAG = "MainActivity";
     BottomControlPanel bottomPanel = null;
     HeadControlPanel headPanel = null;
+    TextView rightTitle;
 
     private FragmentManager fragmentManager = null;
     private FragmentTransaction fragmentTransaction = null;
-
-/*	private MessageFragment messageFragment;
-    private ContactsFragment contactsFragment;
-	private NewsFragment newsFragment;
-	private SettingFragment settingFragment;*/
 
     public static String currFragTag = "";
 
@@ -51,6 +51,7 @@ public class MainActivity extends Activity implements BottomControlPanel.BottomP
     }
 
     private void initUI() {
+        rightTitle = (TextView) findViewById(R.id.right_title);
         bottomPanel = (BottomControlPanel) findViewById(R.id.bottom_layout);
         if (bottomPanel != null) {
 
@@ -60,6 +61,12 @@ public class MainActivity extends Activity implements BottomControlPanel.BottomP
         headPanel = (HeadControlPanel) findViewById(R.id.head_layout);
         if (headPanel != null) {
             headPanel.initHeadPanel();
+            rightTitle.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EditMessageActivity.launcherEditMessageActivity(MainActivity.this);
+                }
+            });
         }
     }
 
@@ -70,15 +77,31 @@ public class MainActivity extends Activity implements BottomControlPanel.BottomP
     public void onBottomPanelClick(int itemId) {
         // TODO Auto-generated method stub
         String tag = "";
+        String rightTag = "";
         if ((itemId & Constant.BTN_FLAG_NOTIFY) != 0) {
             tag = Constant.FRAGMENT_FLAG_NOTIFY;
+            rightTag = Constant.FRAGMENT_FLAG_SENDMESSAGE;
+            rightTitle.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EditMessageActivity.launcherEditMessageActivity(MainActivity.this);
+                }
+            });
         } else if ((itemId & Constant.BTN_FLAG_CLASS) != 0) {
             tag = Constant.FRAGMENT_FLAG_CLASS;
+            rightTag = Constant.FRAGMENT_FLAG_ADDCLASS;
+            rightTitle.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AddClassActivity.launcherAddClassActivity(MainActivity.this);
+                }
+            });
         } else if ((itemId & Constant.BTN_FLAG_PERSONAL) != 0) {
             tag = Constant.FRAGMENT_FLAG_PERSONAL;
         }
         setTabSelection(tag); //切换Fragment
         headPanel.setMiddleTitle(tag);//切换标题
+        headPanel.setRightTitle(rightTag);
     }
 
     private void setDefaultFirstFragment(String tag) {
